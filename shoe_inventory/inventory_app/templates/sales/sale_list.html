@@ -1,0 +1,83 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales</title>
+    <style>
+        /* center heading */
+        h1 {
+            text-align: center;
+        }
+
+        /* table margins */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 3px 5px;
+            background-color: rgb(201, 199, 199);
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* center buttons */
+        .button-container {
+            text-align: center;
+        }
+
+
+    </style>
+</head>
+<body>
+        <a href="{% url 'inventory_list' %}" class="button">Back to Inventory</a>
+    <h1>Sales</h1>
+    <div class="button-container">
+        <a href="{% url 'sale_add' %}" class="button">Add New Sale</a>
+    </div>
+    <br>
+    <table>
+        <tr>
+            <th>Sale ID</th>
+            <th>Shoe</th>
+            <th>Size</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Sale Price</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
+        {% for sale in object_list %}
+        <tr>
+            <td>{{ sale.id }}</td>
+            <td>{{ sale.inventory.shoe.brand }} {{ sale.inventory.shoe.model }} {{ sale.inventory.shoe.name }}</td>
+            <td>{{ sale.inventory.size }}</td>
+            <td>{{ sale.customer.name }}</td>
+            <td>{{ sale.sale_date }}</td>
+            <td>${{ sale.sale_price }}</td>
+            <td>{{ sale.quantity }}</td>
+            <td>
+                    <a href="{% url 'sale_edit' sale.id %}" class="button">Edit Sale</a> |
+                    <a href="{% url 'sale_delete' sale.id %}" class="button">Delete Sale</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>

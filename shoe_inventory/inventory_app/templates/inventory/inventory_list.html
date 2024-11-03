@@ -1,0 +1,77 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneaker Inventory</title>
+    <style>
+        /* center heading */
+        h1 {
+            text-align: center;
+        }
+
+        /* table margins */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 3px 5px;
+            background-color: rgb(201, 199, 199);
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* center buttons */
+        .button-container {
+            text-align: center;
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1>Sneaker Inventory</h1>
+    <div class="button-container">
+        <a href="{% url 'sale_list' %}" class="button">Go to Sales</a>
+        <a class="button">Generate Report</a>
+    </div>
+    <br>
+    <table>
+        <tr>
+            <th>Inventory ID</th>
+            <th>Shoe</th>
+            <th>Size</th>
+            <th>Quantity</th>
+            <th>Buy Date</th>
+            <th>Buy Price</th>
+        </tr>
+        {% for shoe in object_list %}
+        <tr>
+            <td>{{ shoe.id }}</td>
+            <td>{{ shoe.shoe.brand }} {{ shoe.shoe.model }} {{ shoe.shoe.name }}</td>
+            <td>{{ shoe.size }}</td>
+            <td>{{ shoe.quantity }}</td>
+            <td>{{ shoe.buy_date }}</td>
+            <td>${{ shoe.buy_price }}</td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+</body>
