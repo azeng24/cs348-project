@@ -1,2 +1,2 @@
 # cs348-project
-CS 348 Semester Project
+A sneaker inventory tracking app. Allows you to track sales and generate sales reports.
