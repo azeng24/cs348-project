@@ -67,3 +67,6 @@ class Sale(models.Model):
 
     def __str__(self):
         return f"Sale {self.id}: {self.inventory}"
+    
+    class Meta:
+        indexes = [models.Index(fields=['sale_date'], name='idx_sale_date')]
